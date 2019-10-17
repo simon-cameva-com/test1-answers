@@ -1,0 +1,133 @@
+<html>
+<head>
+<script languag="javascript">
+
+function values_are_floats()
+{
+	var values_are_ok = !(isNaN(parseFloat(document.calc_form.val1.value)) || isNaN(parseFloat(document.calc_form.val1.value)))
+
+	if (values_are_ok){
+		document.calc_form.val1.value = parseFloat(document.calc_form.val1.value);
+		document.calc_form.val2.value = parseFloat(document.calc_form.val2.value);
+	}
+	else {
+		alert('Values are not both floats!');
+	}
+
+	return values_are_ok;
+}
+
+function set_answer_line(value1, value2, opval, answer_val){
+	document.getElementById("v1_id").innerHTML = value1;
+	document.getElementById("v2_id").innerHTML = value2;
+	document.getElementById("op_id").innerHTML = opval;
+	document.getElementById("ans_id").innerHTML = answer_val;
+}
+
+function plus_clicked()
+{
+	if (values_are_floats()){
+		var v1 = parseFloat(document.calc_form.val1.value);
+		var v2 = parseFloat(document.calc_form.val2.value);
+		set_answer_line(v1, v2, '+', v1+v2);
+	}
+}
+
+function minus_clicked()
+{
+	if (values_are_floats()){
+		var v1 = parseFloat(document.calc_form.val1.value);
+		var v2 = parseFloat(document.calc_form.val2.value);
+		set_answer_line(v1, v2, '-', v1-v2);
+	}
+}
+
+function multiply_clicked()
+{
+	if (values_are_floats()){
+		var v1 = parseFloat(document.calc_form.val1.value);
+		var v2 = parseFloat(document.calc_form.val2.value);
+		set_answer_line(v1, v2, '*', v1*v2);
+	}
+}
+
+function divide_clicked()
+{
+	if (values_are_floats()){
+		var v1 = parseFloat(document.calc_form.val1.value);
+		var v2 = parseFloat(document.calc_form.val2.value);
+		set_answer_line(v1, v2, '/', v1/v2);
+	}
+}
+
+function modulo_clicked()
+{
+	if (values_are_floats()){
+		var v1 = parseFloat(document.calc_form.val1.value);
+		var v2 = parseFloat(document.calc_form.val2.value);
+		set_answer_line(v1, v2, '%', v1%v2);
+	}
+}
+
+function power_clicked()
+{
+	var v1 = parseFloat(document.calc_form.val1.value);
+	var v2 = parseFloat(document.calc_form.val2.value);
+	var result = 0;
+	if (values_are_floats()){
+		result = Math.pow(v1, v2);
+		if (isNaN(result)){
+			alert('Function cannot be applied to these values!');
+		}
+		else {
+			set_answer_line(v1, v2, '^', result);
+		}		
+	}
+}
+
+function sqrt_clicked()
+{
+	var v1 = parseFloat(document.calc_form.val1.value);
+	var result = 0;
+	if (values_are_floats()){
+		result = Math.sqrt(v1);
+		if (isNaN(result)){
+			alert('Function cannot be applied to these values!');
+		}
+		else {
+			set_answer_line(v1, '', 'SQRT', result);
+		}		
+	}
+}
+</script>
+
+</head>
+<body>
+<h1 style="font-family:Arial;">Simon's calculator page</h1>
+<div style="font-family:Arial;font-size:16pt;">
+<form name="calc_form">
+Input value1: <input type="text" name="val1" size="20" maxlength="10" style="font-size: 20pt;"/><br/>
+Input value2: <input type="text" name="val2" size="20" maxlength="10" style="font-size: 20pt;"/><br/>
+<br/>
+<input type="button" value=" + " onclick="plus_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" - " onclick="minus_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" * " onclick="multiply_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" / " onclick="divide_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" % " onclick="modulo_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" ^ " onclick="power_clicked()" style="font-size: 20pt;"/>
+<input type="button" value=" SQRT " onclick="sqrt_clicked()" style="font-size: 20pt;"/>
+<br/>
+<br/>
+Answer:
+<span style="font-size:20pt;">
+<span id="v1_id"></span> 
+<span id="op_id"></span> 
+<span id="v2_id"></span> 
+= 
+<span id="ans_id"></span>
+</span>
+<br/>
+</form> 
+</div>
+</body>
+</html>

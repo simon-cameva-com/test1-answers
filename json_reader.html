@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Q15 JSON fetch</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+ 
+<input type="button" id="get-data" value="Click me to fetch JSON" style="font-size: 20pt;" /><br/>
+<div id="show-status"></div>
+<hr/>
+<div id="show-json"></div>
+
+<script>
+$(document).ready(function () {
+    $('#get-data').click(function () {
+        var display_text = "JSON start<br/>";
+        var showData = $('#show-status');
+        var showJSON = $('#show-json');
+        var url = 'https://api.github.com/users/unipartdigital';   
+   
+        $.getJSON(url, function (data, status) {
+            if (status == 'success') {
+                showData.text('status = success!!');
+                //console.log("success to log");
+                //console.log(data);
+
+                showJSON.empty();
+                showJSON.append('login:' + data.login+'<br/>');
+                showJSON.append('id:' + data.id+'<br/>');
+                showJSON.append('node_id:' + data.node_id+'<br/>');
+                showJSON.append('avatar_url:' + data.avatar_url+'<br/>');
+                showJSON.append('gravatar_id:' + data.gravatar_id+'<br/>');
+                showJSON.append('url:' + data.url+'<br/>');
+                showJSON.append('html_url:' + data.html_url+'<br/>');
+                showJSON.append('followers_url:' + data.followers_url+'<br/>');
+                showJSON.append('following_url:' + data.following_url+'<br/>');
+                showJSON.append('gists_url:' + data.gists_url+'<br/>');
+                showJSON.append('starred_url:' + data.starred_url+'<br/>');
+                showJSON.append('subscriptions_url:' + data.subscriptions_url+'<br/>');
+                showJSON.append('organizations_url:' + data.organizations_url+'<br/>');
+                showJSON.append('repos_url:' + data.repos_url+'<br/>');
+                showJSON.append('events_url:' + data.events_url+'<br/>');
+                showJSON.append('received_events_url:' + data.received_events_url+'<br/>');
+                showJSON.append('type:' + data.type+'<br/>');
+                showJSON.append('site_admin:' + data.site_admin+'<br/>');
+                showJSON.append('name:' + data.name+'<br/>');
+                showJSON.append('company:' + data.company+'<br/>');
+                showJSON.append('blog:' + data.blog+'<br/>');
+                showJSON.append('location:' + data.location+'<br/>');
+                showJSON.append('email:' + data.email+'<br/>');
+                showJSON.append('hireable:' + data.hireable+'<br/>');
+                showJSON.append('bio:' + data.bio+'<br/>');
+                showJSON.append('public_repos:' + data.public_repos+'<br/>');
+                showJSON.append('public_gists:' + data.public_gists+'<br/>');
+                showJSON.append('followers:' + data.followers+'<br/>');
+                showJSON.append('following:' + data.following+'<br/>');
+                showJSON.append('created_at:' + data.created_at+'<br/>');
+                showJSON.append('updated_at:' + data.updated_at+'<br/>');
+            }
+            else{
+                //console.log("failure to log");
+                showData.text("something whent wrong! status="+status);
+            }   
+        });
+    });
+});
+</script>
+
+
+
+</body>
+</html>
